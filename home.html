@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+{%  load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API FORM</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
+    <script>
+        function updateFields() {
+            var ucid = document.getElementById("ucid");
+            var product = document.getElementById("product");
+            var product_code = document.getElementById("product_code");
+
+            var selectedProductProduct = ucid.value;
+
+            switch (selectedProductProduct) {
+                case "1":
+                    product.value = "Life";
+                    product_code.value = "LI";
+                    break;
+                case "2":
+                    product.value = "Funeral";
+                    product_code.value = "FP";
+                    break;
+                case "3":
+                    product.value = "STI (Short-term insurance)";
+                    product_code.value = "ST";
+                    break;
+                default:
+                    product.value = "";
+                    product_code.value = "";
+                    break;
+            }
+        }
+
+        function updateUCID() {
+            var ucid = document.getElementById("ucid");
+            var product = document.getElementById("product");
+            var product_code = document.getElementById("product_code");
+
+            var selectedProduct = product.value;
+
+            switch (selectedProduct) {
+                case "Life":
+                    ucid.value = "1";
+                    product_code.value = "LI";
+                    break;
+                case "Funeral":
+                    ucid.value = "2";
+                    product_code.value = "FP";
+                    break;
+                case "STI (Short-term insurance)":
+                    ucid.value = "3";
+                    product_code.value = "ST";
+                    break;
+                default:
+                    ucid.value = "";
+                    product_code.value = "";
+                    break;
+            }
+        }
+
+        function updateProductCode() {
+            var ucid = document.getElementById("ucid");
+            var product = document.getElementById("product");
+            var product_code = document.getElementById("product_code");
+
+            var selectedProductCode = product_code.value;
+
+            switch (selectedProductCode) {
+                case "LI":
+                    ucid.value = "1";
+                    product.value = "Life";
+                    break;
+                case "FP":
+                    ucid.value = "2";
+                    product.value = "Funeral";
+                    break;
+                case "ST":
+                    ucid.value = "3";
+                    product.value = "STI (Short-term insurance)";
+                    break;
+                default:
+                    ucid.value = "";
+                    product.value = "";
+                    break;
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+        <img style="height:70px;" alt="iWYZE Logo" src="{% static 'logo.jpeg' %}"/>
+    </header>
+    {% if user.is_staff %}
+    <div class="container">
+        <div class="header">
+            <h2>Submit Single Lead</h2>
+        </div>
+        
+        <div class="form-input">
+            <form action="clients" id="formLeads">
+                <div class="form">
+                    <label for="product">Product<span class="red">&#42;</span></label>
+                    <br>
+                    <select name="products" id="product" onchange="updateUCID()" required="true">
+                        <option value="Life">Life</option>
+                        <option value="Funeral">Funeral</option>
+                        <option value="STI (Short-term insurance)">STI (Short-term insurance)</option>
+                    </select>
+                </div>
+                <div class="form">
+                    <label for="product_code">Product Code</label>
+                    <br>
+                    <select name="product_codes" id="product_code" onchange="updateProductCode()" required="true">
+                        <option value="LI">LI</option>
+                        <option value="FP">FP</option>
+                        <option value="ST">ST</option>
+                    </select>
+                </div>
+                <div class="form">
+                    <label for="ucid">UCID</label>
+                    <br>
+                    <select name="UCID" id="ucid" onchange="updateFields()" required="true">
+                        <option value="1">SLIWYZE_RM_BOTONTRACK0002</option>
+                        <option value="2">SLIWYZE_IF_BOTONTRACK0002</option>
+                        <option value="3">SLIWYZE_IL_BOTONTRACK0002</option>
+                    </select>
+                </div>
+                <div class="form">
+                    <label for="client" id="client_title">Client's Title<span class="red">&#42;</span></label>
+                    <br>
+                    <select name="client-title" id="client_title" class="box-in-boxes" required="true">
+                        <option value="1">Dr</option>
+                        <option value="2">Mr</option>
+                        <option value="3">Mrs</option>
+                        <option value="4">Miss</option>
+                        <option value="5">Prof</option>
+                        <option value="6">Est/Lte</option>
+                    </select>
+                </div>
+                <div class="form">
+                    <label for="client_name" id="client_name">Client's Name <span class="red">&#42;</span></label>
+                    <br>
+                    <input type="text" id="client_name" required="true" placeholder="Client's Name">
+                </div>
+                <div class="form">
+                    <label for="client_surname" id="client's_surname">Client's Surname <span
+                            class="red">&#42;</span></label>
+                    <br>
+                    <input type="text" id="client_surname" required="true" placeholder="Client's Surname">
+                </div>
+                <div class="form">
+                    <label for="phone" id="client's_phoneNumber">Client's Phone No <span
+                            class="red">&#42;</span></label>
+                    <br>
+                    <input type="number" id="client_phoneNumber" required="true" placeholder="Client's Phone No.">
+                </div>
+                <div class="form">
+                    <label for="" id="id">Client's ID No </label>
+                    <br>
+                    <input type="number" id="client_Id" placeholder="Client's ID No.">
+                </div>
+                <div class="form">
+                    <label for="checkbox">
+                        Have you have had a conversation with the customer and has he/she has expressed an interest in
+                        receiving a short-term insurance quote from Old Mutual iWYZE?</label>
+                    <br>
+                    <input type="checkbox" name="yes" id="checkbox_1" required="true" class="checkboxer">
+                </div>
+                <div class="form">
+                    <label for="checkbox">
+                        Do you confirm that the customer has given consent for Old Mutual iWYZE to contact him/her?
+                    </label>
+                    <br>
+                    <input type="checkbox" name="yess" id="checkbox_2" required="true" class="checkboxer">
+                </div>
+                <div class="form">
+                    <label for="attatch">Attach Document</label>
+                    <br>
+                    <input type="file" name="document" id="file">
+                </div>
+                <div class="form">
+                    <label for="notes-add">Additional Notes</label>
+                    <br>
+                    <textarea name="message" id="notes" cols="50" rows="4"
+                        placeholder="Type your message here."></textarea>
+                </div>
+                <div class="form">
+                    <button type="submit" value="Submit" id="submit">Send Lead</button>
+                </div>
+        </div>
+    </div>
+    </form>
+    {% else %}
+        <h1>Request Access</h1>
+        
+    {% endif %}
+    <br/>
+    {% if user.is_superuser %}
+    <button onclick="document.location='{% url 'profiles' %}'" style="margin-top:2;">Profiles</button>
+    {% endif %}
+    <button onclick="document.location='{% url 'logout' %}'" style="background-color:#a80e03; margin-top:2;">Logout</button>
+
+    <script>
+        document.getElementById('formLeads').addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const product = document.getElementById('product').value;
+            const product_code = document.getElementById('product_code').value;
+            const ucid = document.getElementById('ucid').value;
+            const client_title = document.getElementById('client_title').value;
+            const client_name = document.getElementById('client_name').value;
+            const client_surname = document.getElementById('client_surname').value;
+            const client_phoneNumber = document.getElementById('client_phoneNumber').value;
+            const client_Id = document.getElementById('client_Id').value;
+            const notes = document.getElementById('notes').value;
+
+            const data = JSON.stringify({
+                product,
+                product_code,
+                ucid,
+                client_title,
+                client_name,
+                client_surname,
+                client_phoneNumber,
+                client_Id,
+                notes
+            });
+
+            const API_KEY = 'ziYqeJ3iwc8UuKOj5JBqS9ck8UZSXn1M4Hee1XlE';
+
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', 'https://public-cmp.iwyze.co.za/v2/lead');
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.setRequestHeader('x-api-key', API_KEY);
+
+            xhr.addEventListener('load', () => {
+                const responseData = JSON.parse(xhr.responseText);
+                document.getElementById('response').textContent = JSON.stringify(responseData, null, 2);
+            });
+
+            xhr.send(data);
+        });
+
+    </script>
+</body>
+
+</html>

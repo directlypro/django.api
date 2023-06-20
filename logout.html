@@ -1,0 +1,10 @@
+{% extends 'core/base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Logout{% endblock %}
+{% block content %}
+<div class="container border border-3 border-success rounded-4 mt-4">
+    <h1 class="mt-4">You have Successfully Logged Off!!!</h1>
+    <hr>
+    <a class="link mb-4 ml-2" href="{% url 'login' %}">Log In</a>
+</div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Profiles{% endblock %}
+{% block content %}
+{% if user.is_superuser %}
+<div class="container border border-3 border-success rounded-4 mt-4">
+    <h1>Profiles</h1>
+
+    {% if profiles %}
+        {% for user in profiles %}
+            <p>Username : {{ user.username }}<br/>Email : {{ user.email }}<br/>Staff Status : {{ user.is_staff }} <a href="{% url 'change_staff_status' %}">Change Status</a></p>
+        {% endfor %}
+    {% endif %}
+</div>
+<div class="container mt-2">
+<button onclick="document.location='{% url 'home' %}'" class="btn btn-success">Home</button>
+{% else %}
+<h1 class="danger"> You Are Not Allowed Access to This Page, Go Back To <a class="link" href="{% url 'home' %}">Home Page</a></h1>
+{% endif %}
+<button onclick="document.location='{% url 'logout' %}'" class="btn btn-danger">Logout</button>
+</div>
+{% endblock %}
